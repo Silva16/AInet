@@ -1,10 +1,12 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\File;
+use Illuminate\Support\Facades\Response;
 
 class MediaController extends Controller {
 
     private $disk;
+
 
     public function __construct()
     {
@@ -13,8 +15,21 @@ class MediaController extends Controller {
 
     public static function getImages(){
 
-        $images = [storage_path() . "/imgs/DrivingHelper.png"];//, "imgs/FindMyBurger.png", "imgs/GuideTour.jpeg", "imgs/SeriesTime.png", "imgs/SimpleExpensesMananger.png
-        return $images;
+        /*$imgs = [Storage::get('/imgs/FindMyBurger.png')];
+
+        return $imgs;*/
+
+        $path = storage_path() . '/app/imgs/FindMyBurger.png';//, "imgs/FindMyBurger.png", "imgs/GuideTour.jpeg", "imgs/SeriesTime.png", "imgs/SimpleExpensesMananger.png
+
+        $file = new File\File($path);
+
+        $response = Response::make($file);
+
+        $type = $file->getMimeType();
+
+        $response->header('Content-type', $type);
+
+        return $response;
     }
 
 }
