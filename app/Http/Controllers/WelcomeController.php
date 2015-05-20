@@ -30,14 +30,10 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-        $imgs = self::getImages();
-
-		return view('welcome', compact('imgs'));
+        $imgs = [MediaController::getImage("DrivingHelper.png")];
+        return view('welcome', compact('imgs'));
 	}
 
-    private function getImages(){
-        return $images = ["imgs/DrivingHelper.png", "imgs/FindMyBurger.png", "imgs/GuideTour.jpeg", "imgs/SeriesTime.png", "imgs/SimpleExpensesMananger.png"
-];
-    }
+
 
 }
