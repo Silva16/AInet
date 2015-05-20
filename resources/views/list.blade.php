@@ -6,5 +6,6 @@
 	                {{var_dump($img)}}
                         <img src="{{($img)}}" width="150px">
                     @endforeach
+    lolll
 </div>
 @endsection
