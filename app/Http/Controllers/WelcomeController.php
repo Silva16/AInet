@@ -30,8 +30,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-        $imgs = [MediaController::getImage("DrivingHelper.png")];
-        return view('welcome', compact('imgs'));
+        return view('welcome');
 	}
 
 

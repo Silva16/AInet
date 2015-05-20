@@ -9,7 +9,9 @@ class ProjectsController extends Controller {
 
     public function index()
     {
-        return view('list');
+
+        $imgs = MediaController::getImages();
+        return view('list', compact('imgs'));
     }
 
 }

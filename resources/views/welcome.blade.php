@@ -42,10 +42,7 @@
 			<div class="content">
 				<div class="title">Laravel 5 - Test</div>
 				<div class="container">
-	                @foreach($imgs as $img)
-	                {{var_dump($img)}}
-                        <img src="{{url($img)}}" width="150px">
-                    @endforeach
+
 				</div>
 			</div>
 		</div>
