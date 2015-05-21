@@ -15,7 +15,8 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('list', 'ProjectsController@index');
+Route::get('projects/add', 'ProjectsController@create');
+Route::get('projects/list', 'ProjectsController@index');
 
 Route::get(
     '/images/{file}',
