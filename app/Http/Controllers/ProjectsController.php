@@ -9,10 +9,20 @@ class ProjectsController extends Controller {
         $this->middleware('guest');
     }
 
+    public function get_new(){
+
+        return view('projects.add');
+    }
+
     public function create()
     {
         //$imgs = MediaController::getImages();
-        //$id = Project::add();
+
+
+        $project = new Project();
+        $id = Project::add($project);
+
+
         //if($id != null){
             return view('projects/add', compact('id'));
         //}
