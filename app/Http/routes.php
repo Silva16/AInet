@@ -15,8 +15,9 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('add', ['as' => 'add_project', 'uses' => 'ProjectsController@get_new']);
+Route::get('projects/add', ['as' => 'add_project', 'uses' => 'ProjectsController@get_new']);
 
+Route::post('projects/create', array('uses' => 'ProjectsController@post_create'));
 
 Route::get('list', 'ProjectsController@index');
 
