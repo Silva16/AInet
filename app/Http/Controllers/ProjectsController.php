@@ -66,7 +66,10 @@ class ProjectsController extends Controller {
 
 
         //if($id != null){
-            return view('welcome');
+
+
+            return Redirect::to_route('projects/list')->with('message', 'O projecto foi submito para aprovacção');
+
         //}
     }
 
