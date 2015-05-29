@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 class Project extends Model {
 
@@ -81,14 +82,9 @@ class Project extends Model {
         return $this->belongsTo('App/User', 'local_key');
     }
 
-    public static $rules = array(
-      'name' => 'required|min:2',
-    );
 
-    public static function validate($data){
 
-        return Validator::make($data, self::$rules);
-    }
+
 
     /*public static function add($project){
 
