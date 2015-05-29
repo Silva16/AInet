@@ -6232,16 +6232,7 @@ label,
   font-weight: 300;
 }
 
-@media (min-width: 768px) {
-    header {
-        margin-bottom: -5px;
-        margin-left: -1px;
-        margin-top: -1px;
-        margin-right: -1px;
 
-
-    }
-}
 
 @media (min-width: 1200px) {
     .logo {
