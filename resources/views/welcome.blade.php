@@ -23,13 +23,9 @@
 		</style>
 
 
-		<div class="container">
-			<div class="content">
-				<div class="title">Laravel 5 - Test</div>
-				<div class="container">
 
-				</div>
-			</div>
+			<div class="content">
+
 		</div>
 
 @endsection
