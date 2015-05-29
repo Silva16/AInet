@@ -2,13 +2,10 @@
 
 use App\Project;
 use App\User;
-use App\Http\Requests\ProjectRequest;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Validation;
+use Illuminate\Support\Facades\Redirect;
 
-class ProjectsController extends Controller
-{
+class ProjectsController extends Controller {
 
     public $restful = true;
 
@@ -17,56 +14,50 @@ class ProjectsController extends Controller
         $this->middleware('guest');
     }
 
-    public function create()
-    {
+    public function get_new(){
 
-        $state = ['1' => 'Em desenvolvimento', '2' => 'Finalizado'];
 
-        return view('projects.create', compact('state'));
+
+
+        return view('projects.add');
     }
 
-    public function store(ProjectRequest $request)
+    public function post_create()
     {
         //$imgs = MediaController::getImages();
 
+
         //$project = new Project();
         //$id = Project::add($project);
-        //$input = $request->all();
-        $date = new \DateTime();
 
-        $user = User::find(2);
+        $validation = Project::validate(Input::all());
 
-        $project = new Project();
+        if ($validation->fails()){
+            return Redirect::to_route('new_project')->with_errors($validation)->with_input();
+        } else {
+            $date = new \DateTime();
 
-        $project->name = Input::get('name');
-        $project->type = Input::get('type');
-        $project->theme = Input::get('theme');
-        $project->description = Input::get('description');
-        $project->started_at = Input::get('started_at');
-        $project->created_by = $user->id;
-        $project->updated_by = $user->id;
-        $project->approved_by = 2;
-        $project->featured_until = Input::get('featured_until');
-        $project->state = Input::get('state');
-        $project->created_at = $date->getTimestamp();
-        $project->updated_at = $date->getTimestamp();
+            $user = User::find(2);
 
-        $fields = ['acronym' => Input::get('acronym'), 'keywords' => Input::get('keywords'), 'used_software' => Input::get('used_software'), 'used_hardware' => Input::get('used_hardware'), 'observations' => Input::get('observations')];
+            $project = new Project();
 
-        foreach ($fields as $key => $value){
-            if (empty($value)){
-                $project->$key = null;
-            } else{
-                $project->$key = $value;
-            }
+            $project->name = Input::get('name');
+            $project->description = Input::get('description');
+            $project->started_at = Input::get('started_at');
+            $project->created_by = $user->id;
+            $project->updated_by = 2;
+            $project->approved_by = 2;
+            $project->observations = Input::get('observations');
+            $project->featured_until = Input::get('featured_until');
+            $project->state = Input::get('state');
+            $project->created_at = $date->getTimestamp();
+            $project->updated_at = $date->getTimestamp();
+            $project->save();
+
+            return Redirect::to_route('projects/list')->with('message', 'O projecto foi submito para aprovacção');
         }
 
-        $project->save();
 
-
-
-        return redirect()->route('author_projects');
-        //return redirect('author_projects');
 
         /*Project::create(array(
             'name' => Input::get('name'),
@@ -86,6 +77,8 @@ t::get('date'),
 
         //if($id != null){
 
+
+
         //}
     }
 
@@ -95,11 +88,5 @@ t::get('date'),
         $imgs = MediaController::getImages();
         return view('projects/list', compact('imgs'));
     }
-
-    public function get_list()
-    {
-        return view('projects.list');
-    }
-
 
 }
