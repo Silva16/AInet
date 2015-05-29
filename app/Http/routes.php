@@ -15,11 +15,11 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('projects', ['as' => 'author_projects', 'uses' => 'ProjectsController@get_list']);
+Route::get('projects', ['as' => 'author_projects', 'uses' => 'ProjectsController@list']);
 
-Route::get('projects/new', ['as' => 'new_project', 'uses' => 'ProjectsController@get_new']);
+Route::get('projects/create', ['as' => 'create_project', 'uses' => 'ProjectsController@create']);
 
-Route::post('projects/create', array('uses' => 'ProjectsController@post_create'));
+Route::post('projects/store', ['as' => 'store_project', 'uses' => 'ProjectsController@store']);
 
 Route::get('list', 'ProjectsController@index');
 
