@@ -1,7 +1,7 @@
 
 @extends('head')
 <body>
-<div class="header">
+<header>
     <ul>
 
         <li ><a href="#">Página principal</a></li>
@@ -13,15 +13,14 @@
             <input type="button" class="button" value="Login" onclick="msg()">
         </li>
     </ul>
-</div>
+
 <div class="logo">
-    <img  id="logo" src="css/imagens/logo.png">
+    <img  id="logo" alt="logo" src="css/imagens/logo.png" />
 </div>
 <div id="barra">
 
 </div>
-
-
+</header>
 @yield('content')
 
 <!-- Scripts -->
